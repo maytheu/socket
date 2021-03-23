@@ -11,6 +11,22 @@ app.get('/', function(req, res) {
 io.on('connection', socket =>{
 	console.log(' A is connected')
 
+	//Send a message after a timeout of 4seconds
+   setTimeout(function() {
+      socket.send('Sent a message 4seconds after connection!');
+   }, 4000);
+
+	//Send a message with custome event
+   setTimeout(function() {
+      //Sending an object when emmiting an event
+      socket.emit('testerEvent', { description: 'A custom event named testerEvent!'});
+   }, 8000);
+
+	//client request
+	socket.on('clientEvent', function(data) {
+      console.log(data);
+   });
+
 	//when disconnect
 	socket.on('disconnect', ()=>{
 		console.log('A usee haa discomnectef')

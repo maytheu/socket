@@ -6,6 +6,10 @@
 
    <script>
       var socket = io();
+	   socket.on('message', function(data){document.write(data)})
+	   socket.on('testerEvent',data=>{document.write(data.description)})
+	   //clent event
+	   socket.emit('clientEvent', 'Sent an event from the client!');
    </script>
    </head>
    <body>Hello world</body>

@@ -10,6 +10,10 @@
 	   socket.on('testerEvent',data=>{document.write(data.description)})
 	   //clent event
 	   socket.emit('clientEvent', 'Sent an event from the client!');
+	   //hanfle broadcast
+	   socket.emit('broadcast', data=>{
+			      document.body.innerHTML=''
+			      document.write(data.desc)})
    </script>
    </head>
    <body>Hello world</body>

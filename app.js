@@ -6,6 +6,7 @@ var path = require('path')
 app.get('/', function(req, res) {
    res.sendFile(path.resolve(__dirname+'/index.html'))
 });
+let clients = 0
 
 //execute when user is connected
 io.on('connection', socket =>{
@@ -22,14 +23,21 @@ io.on('connection', socket =>{
       socket.emit('testerEvent', { description: 'A custom event named testerEvent!'});
    }, 8000);
 
+
 	//client request
 	socket.on('clientEvent', function(data) {
       console.log(data);
    });
 
+	//sending hroadcast
+	clients++
+	io.sockets.emit('broadcast', desc{clients+' clients connrcted'})
+
 	//when disconnect
 	socket.on('disconnect', ()=>{
 		console.log('A usee haa discomnectef')
+		clients--
+		io.sockets.emit('broadcast',{desc{`${clients} clients comnected})
 	})
 
 })

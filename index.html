@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <title>Hello world</title>
-      <script src = "/socket.io/socket.io.js"></script>
+
+<head>
+   <title>Hello world</title>
+   <script src="/socket.io/socket.io.js"></script>
 
    <script>
       var socket = io();
-	   socket.on('message', function(data){document.write(data)})
-	   socket.on('testerEvent',data=>{document.write(data.description)})
-	   //clent event
-	   socket.emit('clientEvent', 'Sent an event from the client!');
-	   //hanfle broadcast
-	   socket.emit('broadcast', data=>{
-			      document.body.innerHTML=''
-			      document.write(data.desc)})
+      socket.on('message', function (data) { document.write(data) })
+      socket.on('testerEvent', data => { document.write(data.description) })
+      //clent event
+      socket.emit('clientEvent', 'Sent an event from the client!');
+
+      // hanfle broadcast
+      socket.on('broadcast', data => {
+         document.body.innerHTML = ''
+         document.write(data.desc)
+      })
    </script>
-   </head>
-   <body>Hello world</body>
+</head>
+
+<body>Hello world</body>
+
 </html>
